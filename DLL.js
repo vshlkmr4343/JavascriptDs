@@ -13,6 +13,7 @@ class DoublyLinkedList {
         this.tail = null;
         this.length = 0;
     }
+   
     push(val){
         var newNode = new Node(val);
         if(this.length === 0){
@@ -28,15 +29,25 @@ class DoublyLinkedList {
     }
 
     pop(){
-        //var current= this.head;
-        // while (current) {
-        //     console.log('current:',current);
-        //     current = current.next;
-        // }
-        //console.log('Tail:',this.tail)
-        this.tail = this.tail.prev;
-        this.length --
-        return this
+        if(this.length === 0){
+            return
+        } else {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        }
+        this.length--;
+        return this;
+    }
+
+    shift(){
+        if(this.length > 0){
+            this.head = this.head.next;
+            this.head.prev = null;
+        } else {
+            return
+        }
+        this.length--;
+        return this;
     }
 }
 
@@ -45,8 +56,5 @@ var list = new DoublyLinkedList()
 list.push("1")
 list.push("2");
 list.push("3");
-// list.push("4");
-// list.push("5");
-//list.pop()
-console.log('DLL:',list)
+console.log('DLL:',list.pop())
         
